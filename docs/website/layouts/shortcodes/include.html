@@ -8,6 +8,11 @@
   Usage:
 
     {{% include path="includes/ARCHITECTURE.md" %}}
+
+  Relative monorepo links that work on GitHub are rewritten for the site:
+    ./SERVER.md        → docs/server/
+    ./ARCHITECTURE.md  → docs/architecture/
+    ../path/in/repo    → https://github.com/gomuks/gomuks/blob/main/path/in/repo
 */}}
 {{- $path := .Get "path" | default (.Get 0) -}}
 {{- if not $path -}}
@@ -20,4 +25,11 @@
 {{- $raw := $res.Content -}}
 {{- /* Drop a leading ATX H1 so Docsy page title is not duplicated. */ -}}
 {{- $raw = $raw | replaceRE `(?s)^#[^\n]+\n+` "" -}}
+{{- /* Cross-links between in-repo guides → Docsy pages (root-relative). */ -}}
+{{- $raw = $raw | replaceRE `\]\(\./SERVER\.md\)` (printf "](%s)" ("docs/server/" | relURL)) -}}
+{{- $raw = $raw | replaceRE `\]\(\./ARCHITECTURE\.md\)` (printf "](%s)" ("docs/architecture/" | relURL)) -}}
+{{- /* "website/" directory mentions are not navigable pages; point at docs site guide. */ -}}
+{{- $raw = $raw | replaceRE `\]\(\./website/?\)` (printf "](%s)" ("docs/documentation-site/" | relURL)) -}}
+{{- /* Other relative repo paths → GitHub blob (main). */ -}}
+{{- $raw = $raw | replaceRE `\]\(\.\./([^)#\s]+)\)` "](https://github.com/gomuks/gomuks/blob/main/$1)" -}}
 {{- $raw | .Page.RenderString -}}

@@ -21,6 +21,24 @@ hugo server -D
 
 Open [http://localhost:1313/](http://localhost:1313/).
 
+Useful local paths (with default `baseURL: http://localhost:1313/`):
+
+| Page | URL |
+|------|-----|
+| Home | http://localhost:1313/ |
+| Docs index | http://localhost:1313/docs/ |
+| Architecture | http://localhost:1313/docs/architecture/ |
+| Server | http://localhost:1313/docs/server/ |
+
+If you build with a subdirectory `baseURL` (for example GitHub Pages
+`https://user.github.io/gomuks/`), all links are under that prefix
+(e.g. `http://localhost:1313/gomuks/docs/server/`). Prefer the default root
+`baseURL` for local work; override only at deploy time:
+
+```sh
+hugo --minify --baseURL https://gomuks.github.io/gomuks/
+```
+
 Production build:
 
 ```sh

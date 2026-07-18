@@ -1,7 +1,12 @@
 # Hugo + Docsy site for in-repo gomuks developer documentation.
 # User-facing install/FAQ remains at https://docs.mau.fi/gomuks/
+#
+# baseURL is root-relative so local `hugo server` URLs match the site tree
+# (e.g. http://localhost:1313/docs/server/). For GitHub Pages project sites,
+# override at build time:
+#   hugo --minify --baseURL https://gomuks.github.io/gomuks/
 
-baseURL: https://gomuks.github.io/gomuks/
+baseURL: http://localhost:1313/
 title: gomuks docs
 
 contentDir: content/en
@@ -110,8 +115,10 @@ params:
   github_repo: https://github.com/gomuks/gomuks
   github_project_repo: https://github.com/gomuks/gomuks
   github_branch: main
+  # Docsy builds: github_subdir + path relative to website working dir
+  # (e.g. content/en/docs/server.md) → docs/website/content/en/docs/server.md
   github_subdir: docs/website
-  path_base_for_github_subdir: content/en
+
 
   offlineSearch: true
   prism_syntax_highlighting: false
@@ -153,7 +160,8 @@ params:
 menu:
   main:
     - name: Documentation
-      url: /docs/
+      # Path only; Hugo prefixes with baseURL. Use trailing slash for section.
+      pageRef: /docs
       weight: 10
     - name: User docs
       url: https://docs.mau.fi/gomuks/

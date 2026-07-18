@@ -7,7 +7,7 @@ linkTitle: Home
 A Matrix client written in Go — developer and operator documentation from the
 in-repo guides.
 
-<a class="btn btn-lg btn-primary me-3 mb-4" href="{{% ref "/docs" %}}">
+<a class="btn btn-lg btn-primary me-3 mb-4" href="{{% relref "/docs" %}}">
   Browse docs
 </a>
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="https://docs.mau.fi/gomuks/">
@@ -24,12 +24,16 @@ markdown lives under `docs/` in the monorepo (`ARCHITECTURE.md`, `SERVER.md`,
 
 {{% blocks/section type="row" color="white" %}}
 
-{{% blocks/feature icon="fa-solid fa-sitemap" title="Architecture" url="/docs/architecture/" %}}
+{{% blocks/feature icon="fa-solid fa-sitemap" title="Architecture" %}}
 Backend/frontend split, `hicli`, RPC, security notes, and contributor map.
+
+[Read more]({{% relref "/docs/architecture" %}})
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa-solid fa-server" title="Server configuration" url="/docs/server/" %}}
+{{% blocks/feature icon="fa-solid fa-server" title="Server configuration" %}}
 `config.yaml`, directories, auth, reverse proxy, Docker, and ops checklists.
+
+[Read more]({{% relref "/docs/server" %}})
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fa-solid fa-code" title="RPC API" url="https://spec.mau.fi/gomuks/rpc.html" %}}

@@ -71,6 +71,18 @@ hugo server -D
 
 Open http://localhost:1313/
 
+Default `baseURL` is `http://localhost:1313/` so section pages are at the
+**site root**, not under a `/gomuks/` prefix:
+
+| Page | Local URL |
+|------|-----------|
+| Server | http://localhost:1313/docs/server/ |
+| Architecture | http://localhost:1313/docs/architecture/ |
+
+If you previously built with `baseURL: https://…/gomuks/`, restart Hugo after
+pulling config changes (`Ctrl+C`, then `hugo server -D` again). Old tabs may
+still request `/gomuks/docs/server/`, which 404s with the root baseURL.
+
 Stub pages load parent markdown via Hugo mounts:
 
 | Canonical file | Mounted asset |

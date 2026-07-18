@@ -17,7 +17,8 @@ related packages). Prefer editing the source files at the repository root of
 
 | Guide | Source file |
 |-------|-------------|
-| [Architecture]({{% ref "architecture" %}}) | `docs/ARCHITECTURE.md` |
-| [Server configuration]({{% ref "server" %}}) | `docs/SERVER.md` |
+| [Architecture]({{% relref "/docs/architecture" %}}) | `docs/ARCHITECTURE.md` |
+| [Server configuration]({{% relref "/docs/server" %}}) | `docs/SERVER.md` |
+| [Docs site (Hugo + Docsy)]({{% relref "/docs/documentation-site" %}}) | `docs/website/` |
 
 User-facing install and FAQ: [docs.mau.fi/gomuks](https://docs.mau.fi/gomuks/).
