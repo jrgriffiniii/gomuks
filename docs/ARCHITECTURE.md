@@ -5,6 +5,8 @@ and frontends communicate, and notes from an internal codebase review (security,
 correctness risk, testing, and maintainability).
 
 For end-user install and usage docs, see [docs.mau.fi/gomuks](https://docs.mau.fi/gomuks/).
+For operator/server configuration, see [SERVER.md](./SERVER.md).
+For browsing these guides as a Docsy site, see [website/](./website/) (`hugo server` in `docs/website`).
 For the on-wire RPC reference, generate HTML from `pkg/hicli/jsoncmd` with
 [`cmd/rpcdocgen`](../cmd/rpcdocgen/ARCHITECTURE.md):
 

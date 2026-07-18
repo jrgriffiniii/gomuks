@@ -7,6 +7,7 @@ networking, reverse proxies, Docker, push, and operational pitfalls.
 For architecture and layering, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 For product install overview and FAQ, see also
 [docs.mau.fi/gomuks](https://docs.mau.fi/gomuks/).
+To preview this guide in the Hugo + Docsy site: `cd docs/website && hugo server`.
 
 ---
 

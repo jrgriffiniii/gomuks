@@ -1,0 +1,23 @@
+{{/*
+  Include a Markdown asset (path relative to assets/, e.g. includes/FOO.md).
+
+  Parent docs are mounted in hugo.yaml:
+
+    ../ARCHITECTURE.md → assets/includes/ARCHITECTURE.md
+
+  Usage:
+
+    {{% include path="includes/ARCHITECTURE.md" %}}
+*/}}
+{{- $path := .Get "path" | default (.Get 0) -}}
+{{- if not $path -}}
+  {{- errorf "shortcode include: missing path attribute" -}}
+{{- end -}}
+{{- $res := resources.Get $path -}}
+{{- if not $res -}}
+  {{- errorf "shortcode include: asset not found: %s" $path -}}
+{{- end -}}
+{{- $raw := $res.Content -}}
+{{- /* Drop a leading ATX H1 so Docsy page title is not duplicated. */ -}}
+{{- $raw = $raw | replaceRE `(?s)^#[^\n]+\n+` "" -}}
+{{- $raw | .Page.RenderString -}}

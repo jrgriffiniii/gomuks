@@ -1,0 +1,167 @@
+# Hugo + Docsy site for in-repo gomuks developer documentation.
+# User-facing install/FAQ remains at https://docs.mau.fi/gomuks/
+
+baseURL: https://gomuks.github.io/gomuks/
+title: gomuks docs
+
+contentDir: content/en
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+enableRobotsTXT: true
+enableGitInfo: false
+disableKinds:
+  - taxonomy
+  - term
+
+# Hugo invokes `node` for PostCSS; allow it plus default Hugo tooling.
+security:
+  enableInlineShortcodes: false
+  exec:
+    allow:
+      - ^(dart-)?sass(-(embedded))?$
+      - ^go$
+      - ^git$
+      - ^npx$
+      - ^node$
+      - ^postcss$
+      - ^tailwindcss$
+  funcs:
+    getenv:
+      - ^HUGO_
+      - ^CI$
+  http:
+    methods:
+      - (?i)GET|POST
+    urls:
+      - .*
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    parser:
+      attribute:
+        block: true
+  highlight:
+    style: tango
+    noClasses: false
+    lineNos: false
+
+pygmentsCodeFences: true
+pygmentsUseClasses: false
+pygmentsUseClassic: false
+pygmentsStyle: tango
+
+imaging:
+  resampleFilter: CatmullRom
+
+outputs:
+  home: [HTML, RSS]
+  section: [HTML, RSS]
+
+module:
+  proxy: direct
+  hugoVersion:
+    extended: true
+    min: "0.157.0"
+  imports:
+    - path: github.com/google/docsy
+      disable: false
+  # Default mounts plus parent markdown as assets for the include shortcode.
+  mounts:
+    - source: content/en
+      target: content
+    - source: static
+      target: static
+    - source: layouts
+      target: layouts
+    - source: data
+      target: data
+    - source: assets
+      target: assets
+    - source: i18n
+      target: i18n
+    - source: archetypes
+      target: archetypes
+    - source: ../ARCHITECTURE.md
+      target: assets/includes/ARCHITECTURE.md
+    - source: ../SERVER.md
+      target: assets/includes/SERVER.md
+
+languages:
+  en:
+    label: English
+    title: gomuks docs
+    weight: 1
+    locale: en-US
+    params:
+      description: >-
+        Developer and operator documentation for the gomuks Matrix client
+        (architecture, server configuration, and related in-repo guides).
+
+params:
+  copyright: gomuks contributors
+  privacy_policy: ""
+  version_menu: Releases
+  archived_version: false
+  version: main
+  url_latest_version: https://github.com/gomuks/gomuks
+
+  github_repo: https://github.com/gomuks/gomuks
+  github_project_repo: https://github.com/gomuks/gomuks
+  github_branch: main
+  github_subdir: docs/website
+  path_base_for_github_subdir: content/en
+
+  offlineSearch: true
+  prism_syntax_highlighting: false
+
+  ui:
+    sidebar_menu_compact: true
+    sidebar_menu_foldable: true
+    sidebar_search_disable: false
+    breadcrumb_disable: false
+    sidebar_cache_limit: 10
+    navbar_logo: false
+    footer_about_enable: true
+    feedback:
+      enable: false
+    readingtime:
+      enable: true
+    showLightDarkModeMenu: true
+
+  links:
+    user:
+      - name: Matrix room
+        url: https://matrix.to/#/#gomuks:gomuks.app
+        icon: fa-solid fa-comments
+        desc: Chat about gomuks
+      - name: User docs (mau.fi)
+        url: https://docs.mau.fi/gomuks/
+        icon: fa-solid fa-book
+        desc: Installation and FAQ
+    developer:
+      - name: GitHub
+        url: https://github.com/gomuks/gomuks
+        icon: fab fa-github
+        desc: Source code
+      - name: CI pipelines
+        url: https://mau.dev/gomuks/gomuks
+        icon: fa-solid fa-gears
+        desc: GitLab CI builds
+
+menu:
+  main:
+    - name: Documentation
+      url: /docs/
+      weight: 10
+    - name: User docs
+      url: https://docs.mau.fi/gomuks/
+      weight: 20
+    - name: GitHub
+      url: https://github.com/gomuks/gomuks
+      weight: 30
+
+privacy:
+  googleAnalytics:
+    disable: true
